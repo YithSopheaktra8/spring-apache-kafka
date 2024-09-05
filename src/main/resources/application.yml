@@ -1,0 +1,36 @@
+spring:
+  application:
+    name: kafka-streams
+  cloud:
+    stream:
+      kafka:
+        binder:
+          brokers: 128.199.199.32:9092
+          configuration:
+            default:
+              key.serializer: org.apache.kafka.common.serialization.StringSerializer
+              value.serializer: org.apache.kafka.common.serialization.StringSerializer
+              key.deserializer: org.apache.kafka.common.serialization.StringDeserializer
+              value.deserializer: org.apache.kafka.common.serialization.StringDeserializer
+
+      bindings:
+        input-topic:
+          destination: input-topic
+          contentType: application/json
+        output-topic:
+          destination: output-topic
+          contentType: application/json
+
+  kafka:
+    consumer:
+      group-id: group1
+      auto-offset-reset: earliest
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
+
+logging:
+  level:
+    org.springframework.kafka: INFO
+    org.apache.kafka: INFO
